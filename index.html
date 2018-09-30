@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Enigma Emulator</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="assets/styles/style.css"/>
+	</head>
+	<body>
+		<div class="center">
+			<div class="bar-wrapper">
+				<div class="bar">
+					<a id="lockbtn" href="#"><img src="assets/images/lock.png"></a>
+				</div>
+				<div class="name">
+					<h1>Enigma Emulator</h1>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper">
+			<div id="sidebar" class="sidebar">
+				<img class="main-icon" src="assets/images/house-key.png"/>
+				<ul>
+					<button class="tablink" onclick="changeTab(event, lastUsedEncryptionTab)"><li>Encrypt / Decrypt</li></button>
+					<button class="tablink" onclick="changeTab(event, 'plugboard')"><li>Plugboard</li></button>
+					<button class="tablink" onclick="changeTab(event, 'rotors')"><li>Rotors</li></button>
+					<button class="tablink" onclick="changeTab(event, 'reflector')"><li>Reflector</li></button>
+					<button class="tablink" onclick="changeTab(event, 'about')"><li>About</li></button>
+				</ul>
+				<div class="version">
+					<p>v3.0</p>
+				</div>
+			</div>
+			<div class="main">
+				<div id="loader"><img src="assets/images/loading.gif"/></div>
+				<div id="encryptA" class="tabcontent">
+					<div class="head">
+						<h2>Encrypt / Decrypt</h2>
+						<div class="buttons">
+							<ul>
+								<li id="downloadbtnA" class="hide"><img src="assets/images/download.png"/></li>
+								<li id="copybtnA" class="hide" data-clipboard-target="#encrypt-output"><img src="assets/images/copy.png"/></li>
+								<li id="erasebtnA"><img src="assets/images/erase.png"/></li>
+								<li id="switchA"><img src="assets/images/switch0.png"/></li>
+							</ul>
+						</div>
+					</div>
+					<form class="encrypt">
+						<h3>Input:</h3>
+						<textarea id="encrypt-input" name="encrypt-input" type="text" noresize></textarea>
+						<h3 id="textbox-updater">Output:</h3>
+						<textarea id="encrypt-output" name="encrypt-output" type="text" noresize></textarea>
+						<input class="hide" id="plugboardData"/>
+						<input class="hide" id="rotorSettingsData"/>
+						<input class="hide" id="rotorPositionsData"/>
+						<input class="hide" id="reflectorData"/>
+						<div id="encrypt-btn">Encrypt</div>
+						<div id="verify-btn">Verify</div>
+						<div class="btn data-pt" onclick="changeTab(null,'plugboard')">0/10</div>
+						<div class="btn data-pt" onclick="changeTab(null,'rotors')">8 7 6</div>
+						<div class="btn data-pt" onclick="changeTab(null,'rotors')">A A A</div>
+						<div class="btn data-pt" onclick="changeTab(null,'reflector')">A</div>
+					</form>
+				</div>
+				<div id="encryptB" class="tabcontent">
+					<div class="head">
+						<h2>Encrypt / Decrypt</h2>
+						<div class="buttons">
+							<ul>
+								<li id="erasebtnB"><img src="assets/images/erase.png"/></li>
+								<li id="switchB"><img src="assets/images/switch1.png"/></li>
+							</ul>
+						</div>
+					</div>
+					<div class="encrypt-message-container">
+						<div id="encrypt-ready-message" class="btn btn-no-hover">Encryption Not Ready</div>
+					</div>
+					<div class="lampboard-container">
+						<div class="lampboard-group">
+							<div id="lampboard-Q" class="lampboard-item"><p>Q</p></div>
+							<div id="lampboard-W" class="lampboard-item"><p>W</p></div>
+							<div id="lampboard-E" class="lampboard-item"><p>E</p></div>
+							<div id="lampboard-R" class="lampboard-item"><p>R</p></div>
+							<div id="lampboard-T" class="lampboard-item"><p>T</p></div>
+							<div id="lampboard-Y" class="lampboard-item"><p>Y</p></div>
+							<div id="lampboard-U" class="lampboard-item"><p>U</p></div>
+							<div id="lampboard-I" class="lampboard-item"><p>I</p></div>
+							<div id="lampboard-O" class="lampboard-item"><p>O</p></div>
+							<div id="lampboard-P" class="lampboard-item"><p>P</p></div>
+						</div>
+						<div class="lampboard-group">
+							<div id="lampboard-A" class="lampboard-item"><p>A</p></div>
+							<div id="lampboard-S" class="lampboard-item"><p>S</p></div>
+							<div id="lampboard-D" class="lampboard-item"><p>D</p></div>
+							<div id="lampboard-F" class="lampboard-item"><p>F</p></div>
+							<div id="lampboard-G" class="lampboard-item"><p>G</p></div>
+							<div id="lampboard-H" class="lampboard-item"><p>H</p></div>
+							<div id="lampboard-J" class="lampboard-item"><p>J</p></div>
+							<div id="lampboard-K" class="lampboard-item"><p>K</p></div>
+							<div id="lampboard-L" class="lampboard-item"><p>L</p></div>
+						</div>
+						<div class="lampboard-group">
+							<div id="lampboard-Z" class="lampboard-item"><p>Z</p></div>
+							<div id="lampboard-X" class="lampboard-item"><p>X</p></div>
+							<div id="lampboard-C" class="lampboard-item"><p>C</p></div>
+							<div id="lampboard-V" class="lampboard-item"><p>V</p></div>
+							<div id="lampboard-B" class="lampboard-item"><p>B</p></div>
+							<div id="lampboard-N" class="lampboard-item"><p>N</p></div>
+							<div id="lampboard-M" class="lampboard-item"><p>M</p></div>
+						</div>
+					</div>
+					<div class="verify-container">
+						<div id="verifyB-btn" class="btn">Verify</div>
+						<div class="btn dataB-pt" onclick="changeTab(null,'plugboard')">0/10</div>
+						<div class="btn dataB-pt" onclick="changeTab(null,'rotors')">8 7 6</div>
+						<div class="btn dataB-pt" onclick="changeTab(null,'rotors')">A A A</div>
+						<div class="btn dataB-pt" onclick="changeTab(null,'reflector')">A</div>
+					</div>
+				</div>
+				<div id="plugboard" class="tabcontent">
+					<div class="head">
+						<h2>Plugboard</h2>
+						<div class="buttons">
+							<ul>
+								<li id="erasebtn"><img src="assets/images/erase.png"/></li>
+							</ul>
+						</div>
+					</div>
+					<div class="content">
+						<div id="display-letters" class="display-letters"><ul></ul></div>
+						<div class="letters">
+							<p>A</p>
+							<p>B</p>
+							<p>C</p>
+							<p>D</p>
+							<p>E</p>
+							<p>F</p>
+							<p>G</p>
+							<p>H</p>
+							<p>I</p>
+							<p>J</p>
+							<p>K</p>
+							<p>L</p>
+							<p>M</p>
+						</div>
+						<form class="plugboard">
+							<input type="text" name="plugboard-A" id="plugboard-A" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-B" id="plugboard-B" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-C" id="plugboard-C" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-D" id="plugboard-D" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-E" id="plugboard-E" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-F" id="plugboard-F" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-G" id="plugboard-G" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-H" id="plugboard-H" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-I" id="plugboard-I" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-J" id="plugboard-J" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-K" id="plugboard-K" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-L" id="plugboard-L" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-M" id="plugboard-M" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-N" id="plugboard-N" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-O" id="plugboard-O" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-P" id="plugboard-P" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-Q" id="plugboard-Q" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-R" id="plugboard-R" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-S" id="plugboard-S" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-T" id="plugboard-T" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-U" id="plugboard-U" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-V" id="plugboard-V" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-W" id="plugboard-W" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-X" id="plugboard-X" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-Y" id="plugboard-Y" autocomplete="off" maxlength="1">
+							<input type="text" name="plugboard-Z" id="plugboard-Z" autocomplete="off" maxlength="1">
+						</form>
+						<div class="letters">
+							<p>N</p>
+							<p>O</p>
+							<p>P</p>
+							<p>Q</p>
+							<p>R</p>
+							<p>S</p>
+							<p>T</p>
+							<p>U</p>
+							<p>V</p>
+							<p>W</p>
+							<p>X</p>
+							<p>Y</p>
+							<p>Z</p>
+						</div>
+						<p>Number of Plugs Used: <span id="plugboardNum">0</span>/10</p>
+					</div>
+				</div>
+				<div id="rotors" class="tabcontent">
+					<div class="head">
+						<h2>Rotors</h2>
+					</div>
+					<div class="content">
+						<div class="setting-container">
+							<h3>Settings:</h3>
+							<div class="drop-active-container">
+								<div id="currentRotorSetting3" class="drop-item-container disabled"></div>
+								<div id="currentRotorSetting2" class="drop-item-container disabled"></div>
+								<div id="currentRotorSetting1" class="drop-item-container disabled"></div>
+								<div class="num-container">
+									<p>3</p>
+									<p>2</p>
+									<p>1</p>
+								</div>
+							</div>
+							<div class="btn-container">
+								<div id="rotorSettingResetBtn">Reset</div>
+							</div>
+							<div class="drag-home-container">
+								<div class="drag-item-container">
+									<div class="drag-item">1</div>
+								</div>
+								<div class="drag-item-container">
+									<div class="drag-item">2</div>
+								</div>
+								<div class="drag-item-container">
+									<div class="drag-item">3</div>
+								</div>
+								<div class="drag-item-container">
+									<div class="drag-item">4</div>
+								</div>
+								<div class="drag-item-container">
+									<div class="drag-item">5</div>
+								</div>
+								<div class="drag-item-container">
+									<div class="drag-item">6</div>
+								</div>
+								<div class="drag-item-container">
+									<div class="drag-item">7</div>
+								</div>
+								<div class="drag-item-container">
+									<div class="drag-item">8</div>
+								</div>
+							</div>
+						</div>
+						<div class="position-container">
+							<h3>Position:</h3>
+							<div class="rotor-btn-container">
+								<div id="rotor-up-btn-3" class="rotor-btn"><img src="assets/images/up-arrow.png"/></div>
+								<div id="rotor-up-btn-2" class="rotor-btn"><img src="assets/images/up-arrow.png"/></div>
+								<div id="rotor-up-btn-1" class="rotor-btn"><img src="assets/images/up-arrow.png"/></div>
+							</div>
+							<form class="rotor-position">
+								<input type="text" name="rotorPosition3" id="rotorPosition3" autocomplete="off" maxlength="1">
+								<input type="text" name="rotorPosition2" id="rotorPosition2" autocomplete="off" maxlength="1">
+								<input type="text" name="rotorPosition1" id="rotorPosition1" autocomplete="off" maxlength="1">
+							</form>
+							<div class="rotor-btn-container">
+								<div id="rotor-down-btn-3" class="rotor-btn"><img src="assets/images/down-arrow.png"/></div>
+								<div id="rotor-down-btn-2" class="rotor-btn"><img src="assets/images/down-arrow.png"/></div>
+								<div id="rotor-down-btn-1" class="rotor-btn"><img src="assets/images/down-arrow.png"/></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="reflector" class="tabcontent">
+					<div class="head">
+						<h2>Reflector</h2>
+					</div>
+					<h3>Use Reflector:</h3>
+					<div class="reflector-btn-container">
+						<div id="reflector-btn-A" class="reflector-btn">A</div>
+						<div id="reflector-btn-B" class="reflector-btn">B</div>
+						<div id="reflector-btn-C" class="reflector-btn">C</div>
+					</div>
+				</div>
+				<div id="about" class="tabcontent">
+					<div class="head">
+						<h2>About</h2>
+						<div class="buttons">
+							<ul>
+								<li id="settingsbtn"><img src="assets/images/settings.png"/></li>
+							</ul>
+						</div>
+					</div>
+					<div class="content">
+						<p>The Enigma machines were a series of electro-mechanical rotor cipher machines developed and used in the early- to mid-20th century to protect commercial, diplomatic and military communication. Enigma was invented by the German engineer Arthur Scherbius at the end of World War I.[1] Early models were used commercially from the early 1920s, and adopted by military and government services of several countries, most notably Nazi Germany before and during World War II.[2] Several different Enigma models were produced, but the German military models, having a plugboard, were the most complex. Japanese and Italian models were also in use.</p>
+						<div class="photo-block">
+							<img src="assets/images/enigma-photos/photo1.png"/>
+							<img src="assets/images/enigma-photos/photo2.jpg"/>
+							<img src="assets/images/enigma-photos/photo3.png"/>
+							<img src="assets/images/enigma-photos/photo4.jpg"/>
+						</div>
+						<p>Like other rotor machines, the Enigma machine is a combination of mechanical and electrical subsystems. The mechanical subsystem consists of a keyboard; a set of rotating disks called rotors arranged adjacently along a spindle; one of various stepping components to turn at least one rotor with each key press, and a series of lamps, one for each letter.</p>
+						<a target="_blank" href="https://en.wikipedia.org/wiki/Enigma_machine"><div class="btn">Read more on Wikipedia</div></a>
+					</div>
+				</div>
+				<div id="settings" class="tabcontent">
+					<div class="head">
+						<h2>Settings</h2>
+					</div>
+					<div class="password-enabled">Password Enabled: <span id="password-enabled"></span></div>
+					<form class="password">
+						<input type="text" maxlength="1" id="pin-1" autocomplete="off">
+						<input type="text" maxlength="1" id="pin-2" autocomplete="off">
+						<input type="text" maxlength="1" id="pin-3" autocomplete="off">
+						<input type="text" maxlength="1" id="pin-4" autocomplete="off">
+					</form>
+					<div class="disable-pass-container">
+						<div class="btn" id="disable-pass-btn">Disable Password</div>
+					</div>
+					<div class="erase-memory-container">
+						<div class="btn" id="erase-memory" data-chance="0">Erase All Memory</div>
+					</div>
+				</div>
+				<div id="lock" class="tabcontent">
+					<div class="head">
+						<h2>Enigma locked</h2>
+					</div>
+					<form class="password">
+						<input type="text" maxlength="1" id="pinL-1" autocomplete="off" autofocus="">
+						<input type="text" maxlength="1" id="pinL-2" autocomplete="off">
+						<input type="text" maxlength="1" id="pinL-3" autocomplete="off">
+						<input type="text" maxlength="1" id="pinL-4" autocomplete="off">
+						<div id="clear-btn" class="btn">Clear</div>
+						<div id="unlock-btn" class="btn">Unlock</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="assets/scripts/pressAndHold.js"></script>
+	<script src="assets/scripts/cookies.js"></script>
+	<script src="assets/scripts/enigma.obfuscated.js"></script>
+	<script src="assets/scripts/scripts.obfuscated.js"></script>
+	<script src="assets/scripts/datahandler.obfuscated.js"></script>
+</html>

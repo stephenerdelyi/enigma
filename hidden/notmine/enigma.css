@@ -1,0 +1,437 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+article, aside, figure, footer, header, nav, section { display:block; }
+
+body {
+	background: url(bg.png) #fff repeat-y left top;
+    color: #000;
+	font-size: 100%;
+}
+
+h1 {
+	margin: 5px 0;
+	border-bottom: 1px solid #888;
+	font-size: 1.8em;
+	font-family: "special_elite_regular", "courier new", courier, monospace;
+}
+
+h2 {
+	margin: 20px 0 10px 0;
+	padding: 2px 5px;
+	background-color: #000;
+	color: #fff;
+	font-size: 1.6em;
+	font-family: "special_elite_regular", "courier new", courier, monospace;
+}
+
+h3 {
+	margin: 20px 0 10px 0;
+	font-size: 1.4em;
+	font-family: "special_elite_regular", "courier new", courier, monospace;
+}
+
+img {
+	border: none;
+}
+
+label[lang=de], span[lang=de] {
+	border-bottom: 1px dotted #333;
+	cursor: help;
+}
+
+a {
+	color: #0000c0;
+}
+
+a:visited {
+	color: #600060;
+}
+
+a:hover {
+	color: #c00000;
+}
+
+a:active {
+	color: #ff0000;
+}
+
+#header .header-notice {
+	margin-bottom: 20px;
+	border: 1px solid #f00;
+	padding: 3px 5px;
+	font-size: 0.85em;
+}
+
+#footer {
+    clear: both;
+    margin: 0 0 0 200px;
+    border-top: 1px solid #000;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+#wrapper {
+    width: 100%;
+    float: right;
+    margin-left: -230px;
+}
+
+#content {
+    margin: 10px 10px 10px 230px;
+	padding: 10px;
+	line-height: 1.5em;
+}
+
+#navigation {
+	float: left;
+	position: fixed;
+	width: 200px;
+	padding: 10px;
+	background-color: #000;
+	color: #fff;
+	font-family: "special_elite_regular", "courier new", courier, monospace;
+}
+
+#navigation ul li {
+	list-style: none;
+	padding: 3px 0 10px 0;
+	background: url(uline.png) transparent no-repeat bottom;
+	text-align: center;
+}
+
+#navigation a {
+	color: #dfdfdf;
+	text-decoration: none;
+}
+
+#navigation a:visited {
+	color: #dfdfdf;
+}
+
+#navigation a:hover {
+	color: #ffffc0;
+}
+
+#navigation a:active {
+	color: #ff0000;
+}
+
+#help-wrapper {
+    width: 100%;
+    float: left;
+    margin-right: -280px;
+}
+
+#help-content {
+    margin: 0 280px 0 0;
+	padding: 0;
+}
+#content #help_contents {
+	position: fixed;
+	top: 50px;
+	right: 20px;
+	width: 250px;
+	margin: 0;
+	border: 1px solid #000;
+	padding: 0;
+	background-color: #fff;
+	color: #000;
+}
+#content #help_contents h2 {margin-top: 0;}
+
+#content h2.increment {
+	counter-increment: section 1;
+}
+
+#content h2.increment:before  {
+	content: counter(section) ". "; 
+}
+
+#content h3.increment {
+	counter-increment: subsection 1;
+}
+
+#content h3.increment:before  {
+	content: counter(section) "." counter(subsection) ". "; 
+}
+
+#content .samplemsg {
+	margin: 10px 20px;
+	border: 1px solid #808080;
+	padding: 0 5px;
+	background-color: #fff;
+	color: #000;
+	letter-spacing: 0.1em;
+	font-family: "special_elite_regular", "courier new", courier, monospace;
+	font-size: 0.9em;
+}
+
+#content .samplemsg b {
+	color: #0000ff;
+}
+#content dl, #content ol, #content ul {
+	margin: 10px 0 10px 20px;
+}
+
+#content ol li ol li {
+	counter-increment: s 1;
+	list-style: none;
+	margin-left: 0;
+}
+
+#content ol li ol li:before {
+	content: "2." counter(s) ". "; 
+}
+
+#content dt {
+	font-weight: bold;
+}
+
+#content dd, #content li {
+	margin: 0 0 5px 20px;
+}
+
+#content p {
+	margin: 10px 0;
+}
+
+#content .backtotop {
+	text-align: center;
+}
+
+#content .imgfloat_r {
+	float: right;
+	margin: 0 40px 20px 40px;
+}
+
+#content .fig {
+	margin: 10px auto;
+	font-size: 0.85em;
+	font-style: italic;
+	text-align: center;
+}
+
+.hidden {
+	display: none;
+}
+#content .inanutshell {
+	font-size: 1.2em;
+	font-style: italic;
+}
+
+#content .launch {
+	margin: 40px 20px;
+	text-align: center;
+	font-family: "special_elite_regular", "courier new", courier, monospace;
+	font-size: 2em;
+	fonbt-weight: bold;
+}
+
+#content .technote {
+	clear: both;
+	font-size: 0.85em;
+}
+
+#content .refer_to {
+	font-style: italic;
+}
+
+#content pre {
+	margin: 20px 0;
+	overflow:auto;
+	font-family: "courier new", courier, monospace;
+}
+#content pre .block_comment {
+	color: #00f;
+}
+#content pre .line_comment {
+	color: #f00;
+}
+
+
+/* KEY GENERATOR */
+
+#dkgen fieldset {
+	margin: 10px 0;
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #000;
+	padding: 10px 20px;
+}
+
+#dkgen legend {
+	padding: 0 5px;
+}
+
+#dkgen dt {
+	clear: both;
+	width: 120px;
+	float: left;
+}
+
+#dkgen p {
+	clear: both;
+	margin: 10px 10px 10px 120px;
+}
+
+#dkgen option {
+	padding: 0 5px;
+}
+
+#dkgen input {
+	padding: 3px 10px;
+}
+
+/* ENGIMA MACHINE */
+
+#content #enigma {
+	margin: 10px 0;
+	line-height: 1.2em;
+}
+
+#content #enigma p {
+	margin-bottom: 5px;
+}
+
+#content #enigma table {
+    margin: 0 auto 10px auto;
+    border: none;
+    border-collapse: collapse;
+}
+
+#content #enigma td, #content #enigma th {
+    padding: 1px 5px;
+}
+
+#content #enigma #wheels th {
+	text-align: right;
+}
+
+#content #enigma #plugboard {
+    border: 1px solid #dfdfdf;
+}
+#content #enigma #plugboard th {
+    background-color: #dfdfdf;
+	padding: 0;
+}
+#content #enigma #plugboard td {
+	width: 28px;
+	padding-bottom: 5px;
+    text-align: center;
+	font-family: "courier new", courier, monospaced;
+}
+
+#content #enigma #keyboard {
+	border-collapse: separate;
+	border-spacing: 3px;
+}
+
+#content #enigma #keyboard td {
+    text-align: center;
+	vertical-align: top;
+	padding: 0;
+}
+
+#content #enigma #lightboard {
+	margin: 5px 0;
+	text-align: center;
+}
+#content #enigma #lightboard b {
+    padding: 3px 15px;
+    background: url(led.gif) transparent no-repeat center center;
+	font-family: "courier new", courier, monospaced;
+	font-weight: bolder;
+	font-size: 1.3em;	
+}
+
+#content #enigma #lightboard .led_off {
+    color: #dfdfdf;
+}
+
+#content #enigma #lightboard .led_on {
+    color: #ffff00;
+}
+
+#content #enigma label {
+    font-weight: bold;
+}
+
+#content #enigma input, #content #enigma select {
+    text-align: center;
+	font-family: "courier new", courier, monospaced;
+}
+
+#content #enigma #wheels .settings input {
+	width: 60px;
+	font-family: "courier new", courier, monospaced;
+}
+
+#content #enigma #wheels .settings select {
+	width: 64px;
+	font-family: "courier new", courier, monospaced;
+}
+
+#content #enigma option {
+	padding: 0 5px 0 3px;
+	font-family: "courier new", courier, monospaced;
+}
+
+#content #enigma #plugboard input {
+    width: 26px;
+	font-family: "courier new", courier, monospaced;
+}
+
+#content #enigma #keyboard .typeletter label {
+	display: block;
+}
+
+#content #enigma #keyboard .typeletter {
+	background: url(entertext.png) #fff no-repeat bottom;
+}
+
+#content #enigma #keyboard .typeletter input {
+    width: 40px;
+    border: 2px solid #ff0000;
+	font-family: "courier new", courier, monospaced;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#content #enigma #keyboard textarea {
+	height: 60px;
+	font-family: "courier new", courier, monospaced;
+}
+
+#content #jsmsg, #content #debugmode {
+	width: 380px;
+	margin: 10px auto;
+	border: 2px solid #ff0000;
+	padding: 5px 5px 5px 50px;
+	background: url(alert.png) #ffebeb no-repeat left top;
+	color: #000;
+}
+
+#content .showsave {
+	width: 80%;
+	margin: 10px auto;
+	border: 2px solid #ffff80;
+	padding: 5px;
+	background-color: #ffffc0;
+	color: #000;
+}
+
+.note {
+	width: 80%;
+	margin: 10px auto;
+	border-top: 1px solid #ff0000;
+	border-bottom: 1px solid #ff0000;
+	padding: 5px 0;
+	text-align: center;
+}
+
+.note strong {
+	color: #ff0000;
+}

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navy M3/M4 Enigma Machine Emulator</title>
+<meta name="author" content="Louise Dade" />
+<meta name="description" content="A fully working emulation of a Navy M3 Enigma Machine." />
+<meta name="keywords" content="enigma machine, enigma, Navy M3, codebreaking, codes, code breaking, ciphers, ciphertext" />
+<link rel="stylesheet" media="screen" href="http://www.louisedade.co.uk/shared_resources/fonts/fonts.css" />
+<link rel="stylesheet" media="screen" href="enigma.css" />
+<script src="enigma.js"></script>
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body>
+<div id="wrapper"><div id="content">
+<header id="header">
+	<h1>Navy M3/M4 Enigma Machine Emulator</h1>
+	<div class="header-notice"><b>Note:</b> this Enigma emulator is now over ten years old and is no longer being maintained. While it still largly works, your milage may vary on newer browsers and I have no idea what it's like on smart-tech, particularly touch-screen (tablets/mobiles/anything else that isn't a PC). Also note: if you are curious about the code it can be viewed <a href="jssource.html">here</a>.</div>
+</header>
+<div id="savearea"></div>
+
+<form id="enigma" name="enigma" method="GET" action="enigma.html">
+<table id="wheels">
+<tr>
+  <th>
+	<label for="enigma_type" accesskey="u">Enigma Type:</label>
+  </th>
+  <td>
+    <select id="enigma_type">
+    <option value="m3" selected="selected">M3 (Navy/Army/Airforce)</option>
+    <option value="m4">M4 (Navy Only)</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <th>
+	<label for="use_reflector" id="ur" accesskey="u" lang="de" title="Reflector Wheel">Umkehrwalze:</label>
+	<label for="use_reflector_thin" id="urt" accesskey="u" lang="de" title="Reflector Wheel">Umkehrwalze:</label>
+  </th>
+  <td>
+    <select id="use_reflector">
+    <option value="b" selected="selected">--- B ---</option>
+    <option value="c">--- C ---</option>
+    </select>
+    <select id="use_reflector_thin">
+    <option value="b_thin" selected="selected">--- B (thin) ---</option>
+    <option value="c_thin">--- C (thin) ---</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <th>
+	<label for="leftw_no" accesskey="w" lang="de" title="Wheel Order">Walzenlage:</label>
+  </th>
+  <td class="settings">
+
+    <select id="greek_no">
+    <option value="b" selected="selected">Beta</option>
+    <option value="g">Gamma</option>
+    </select>
+
+    <select id="leftw_no">
+    <option value="1" selected="selected">I</option>
+    <option value="2">II</option>
+    <option value="3">III</option>
+    <option value="4">IV</option>
+    <option value="5">V</option>
+    <option value="6">VI</option>
+    <option value="7">VII</option>
+    <option value="8">VIII</option>
+    </select>
+
+    <select id="middlew_no">
+    <option value="1">I</option>
+    <option value="2" selected="selected">II</option>
+    <option value="3">III</option>
+    <option value="4">IV</option>
+    <option value="5">V</option>
+    <option value="6">VI</option>
+    <option value="7">VII</option>
+    <option value="8">VIII</option>
+    </select>
+
+    <select id="rightw_no">
+    <option value="1">I</option>
+    <option value="2">II</option>
+    <option value="3" selected="selected">III</option>
+    <option value="4">IV</option>
+    <option value="5">V</option>
+    <option value="6">VI</option>
+    <option value="7">VII</option>
+    <option value="8">VIII</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <th>
+	<label for="leftw_ring" accesskey="r" lang="de" title="Ring Setting">Ringstellung:</label>
+  </th>
+  <td class="settings">
+	<input type="text" id="greek_ring" size="3" maxlength="1" value="A" />
+	<input type="text" id="leftw_ring" size="3" maxlength="1" value="A" />
+	<input type="text" id="middlew_ring" size="3" maxlength="1" value="A" />
+	<input type="text" id="rightw_ring" size="3" maxlength="1" value="A" />
+  </td>
+</tr>
+<tr>
+  <th><label for="leftw_set" accesskey="g" lang="de" title="Ground Setting">Grundstellung:</label></th>
+  <td class="settings">
+	<input type="text" id="greek_set" size="3" maxlength="1" value="A" />
+	<input type="text" id="leftw_set" size="3" maxlength="1" value="A" />
+	<input type="text" id="middlew_set" size="3" maxlength="1" value="A" />
+	<input type="text" id="rightw_set" size="3" maxlength="1" value="A" />
+  </td>
+</tr>
+<tr>
+  <th>Functions:</th>
+  <td>
+	<a href="enigma.html?action=save" id="save">Save Settings</a> | <a href="enigma.html" id="clearup">Clear Settings</a> 
+	| <strong><em><a href="help.html" target="_blank" title="Using the Enigma emulator [Opens in new window]">Help!</a></em></strong>
+  </td>
+</tr>
+</table>
+
+<table id="plugboard">
+<tr><th colspan="13"><span lang="de" title="Plugboard">Steckerbrett</span></th></tr>
+<tr><td>
+<label for="plug1" accesskey="s">A</label> <input type="text" id="plug1" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug2">B</label> <input type="text" id="plug2" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug3">C</label> <input type="text" id="plug3" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug4">D</label> <input type="text" id="plug4" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug5">E</label> <input type="text" id="plug5" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug6">F</label> <input type="text" id="plug6" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug7">G</label> <input type="text" id="plug7" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug8">H</label> <input type="text" id="plug8" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug9">I</label> <input type="text" id="plug9" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug10">J</label> <input type="text" id="plug10" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug11">K</label> <input type="text" id="plug11" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug12">L</label> <input type="text" id="plug12" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug13">M</label> <input type="text" id="plug13" size="3" maxlength="1" value="" />
+</td></tr>
+<tr><td>
+<label for="plug14">N</label> <input type="text" id="plug14" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug15">O</label> <input type="text" id="plug15" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug16">P</label> <input type="text" id="plug16" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug17">Q</label> <input type="text" id="plug17" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug18">R</label> <input type="text" id="plug18" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug19">S</label> <input type="text" id="plug19" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug20">T</label> <input type="text" id="plug20" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug21">U</label> <input type="text" id="plug21" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug22">V</label> <input type="text" id="plug22" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug23">W</label> <input type="text" id="plug23" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug24">X</label> <input type="text" id="plug24" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug25">Y</label> <input type="text" id="plug25" size="3" maxlength="1" value="" />
+</td><td>
+<label for="plug26">Z</label> <input type="text" id="plug26" size="3" maxlength="1" value="" />
+</td></tr>
+</table>
+
+<div id="lightboard">
+<b class="led_off" id="l_Q">Q</b>
+<b class="led_off" id="l_W">W</b>
+<b class="led_off" id="l_E">E</b>
+<b class="led_off" id="l_R">R</b>
+<b class="led_off" id="l_T">T</b>
+<b class="led_off" id="l_Z">Z</b>
+<b class="led_off" id="l_U">U</b>
+<b class="led_off" id="l_I">I</b>
+<b class="led_off" id="l_O">O</b><br />
+<b class="led_off" id="l_A">A</b>
+<b class="led_off" id="l_S">S</b>
+<b class="led_off" id="l_D">D</b>
+<b class="led_off" id="l_F">F</b>
+<b class="led_off" id="l_G">G</b>
+<b class="led_off" id="l_H">H</b>
+<b class="led_off" id="l_J">J</b>
+<b class="led_off" id="l_K">K</b><br />
+<b class="led_off" id="l_P">P</b>
+<b class="led_off" id="l_Y">Y</b>
+<b class="led_off" id="l_X">X</b>
+<b class="led_off" id="l_C">C</b>
+<b class="led_off" id="l_V">V</b>
+<b class="led_off" id="l_B">B</b>
+<b class="led_off" id="l_N">N</b>
+<b class="led_off" id="l_M">M</b>
+<b class="led_off" id="l_L">L</b>
+</div>
+
+<table id="keyboard">
+<tr>
+<td colspan="2" class="typeletter">
+    <label for="textin" accesskey="t">Type Letter:</label> 
+    <input type="text" id="textin" size="3" maxlength="1" value="" />
+</td>
+</tr>
+<tr>
+<td>
+    <label for="msg_in">Message/Cipher Text In:</label><br />
+    <textarea id="msg_in" cols="30" rows="4" value=""></textarea>
+</td>
+<td>
+    <label for="msg_out">Cipher/Clear Text Out:</label><br />
+    <textarea id="msg_out" cols="30" rows="4" value=""></textarea>
+</td>
+</tr>
+<tr>
+<td colspan="2"><label for="letter_grouping">Group letters in blocks of:</label> 
+    <select id="letter_grouping">
+    <option value="3"> 3 </option>
+    <option value="4" selected="selected"> 4 </option>
+    <option value="5"> 5 </option>
+    <option value="6"> 6 </option>
+    </select>
+</td>
+</tr>
+<tr>
+<td colspan="2">Input Method: 
+	<label><input type="radio" name="input_method" id="single" value="single" checked="checked" /> Single letter</label>, 
+	<label><input type="radio" name="input_method" id="block" value="block" /> Block of text</label> 
+</td>
+</tr>
+<tr id="blockinput">
+<td colspan="2">
+	<textarea id="txt_in" cols="60" rows="6"></textarea><br />
+	<input type="button" id="startbtn" value="Encipher/Decipher Text" />
+</td>
+</tr>
+</table>
+
+
+</form>
+
+<p>If you'd like to send messages to your friends, you <em>all</em> need to be using the same settings. You can generate a "daily key" (settings for each day) for a particular month using the <a href="dailykeys.html">Daily Key Generator</a>.</p>
+
+<div id="jsmsg">
+<p><strong>Your browser does not appear to support some of the Javascript functions this emulator requires.</strong></p>
+</div>
+
+</div></div>
+
+<nav id="navigation">
+<p class="logo"><img src="enigmalogo.png" width="200" height="110" alt=" Enigma Emulator " /></p>
+<ul>
+<li><a href="index.html" title="Return to the Home Page">Introduction</a></li>
+	<li><strong>Enigma Emulator</strong></li>
+<li><a href="dailykeys.html" title="Generate a List of Daily Keys">Daily Key Generator</a></li>
+<li><a href="help.html" title="How to use the Enigma Emulator">Emulator Help</a></li>
+<li><a href="howitworks.html" title="How the Enigma machine worked">Enigma Mechanics</a></li>
+<li><a href="furtherreading.html" title="Find out more about the Enigma Machine">Further Reading</a></li>
+</ul>
+</nav>
+
+<footer id="footer">
+<p>Enigma Emulator &copy; 2006-2017, by Louise Dade. All rights reserved.</p>
+</footer>
+</body>
+</html>

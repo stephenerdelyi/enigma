@@ -1,0 +1,845 @@
+/* OVERRIDE STYLES */
+.swal-text {
+	text-align: center;
+}
+
+/* REGULAR STYLES */
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #bcbbbb;
+	background-image: url("../images/background.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+hr {
+	border-color: #222222;
+	margin: 25px 0px;
+}
+input {
+	-webkit-appearance: none;
+}
+.hide {
+	display: none;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+.wrapper {
+	width: 915px;
+	height: 560px;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.sidebar {
+	background-color: #222222;
+	height: 100%;
+	float: left;
+	display: inline-block;
+	width: 260px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	text-align: center;
+}
+	.sidebar img.main-icon {
+		width: 50px;
+		margin: 35px 0px 60px;
+		display: inline-block;
+	}
+	.sidebar ul {
+		text-align: left;
+		list-style: none;
+		padding: 0;
+		margin-bottom: 0px;
+	}
+		.sidebar ul li {
+			border-top: 1px solid #323434;
+			padding: 24.5px;
+		}
+		.sidebar ul button:last-child li {
+			border-bottom: 1px solid #323434;
+		}
+		.sidebar ul button.active li {
+			border-left: 6px solid #bcbbbb;
+			animation: boldEffect .1s;
+			animation-fill-mode:forwards;
+			background-image: url("../images/right-arrow.png");
+			background-repeat: no-repeat;
+			background-position-x: 210px;
+			background-position-y: 26px;
+			background-size: 23px;
+		}
+			@keyframes boldEffect {
+			    from {
+				    font-weight: inherit;
+				}
+			    to {
+				    font-weight: bold;
+				}
+			}
+		.sidebar ul button:not(button.active) li {
+			padding-left: 29.5px;
+		}
+	.version {
+		background-color: #323434;
+		display: inline-block;
+		border-radius: 30px;
+		padding-left: 10px;
+		padding-right: 10px;
+		margin-right: 3px;
+		margin-top: 14px;
+	}
+		.version p {
+			margin: 2px;
+			font-weight: bold;
+			color: #222222;
+		}
+.main {
+	background-color: #323434;
+	height: 100%;
+	width: 655px;
+	float: left;
+	display: inline-block;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	padding: 7px 35px 30px;
+	box-sizing: border-box;
+}
+.head {
+	overflow: auto;
+}
+	.head h2 {
+		font-size: 2em;
+		float: left;
+		width: 340px;
+	}
+	.head .buttons {
+		float: right;
+	}
+button.tablink {
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	font-size: inherit;
+	color: inherit;
+	width: 100%;
+	padding: 0;
+	margin: 0px;
+	display: block;
+	text-align: left;
+}
+	button.tablink:hover {
+		cursor: pointer;
+	}
+	button.tablink:focus {
+		outline-width: 0;
+		outline: none;
+	}
+	
+.btn {
+	display: inline-block;
+	text-transform: uppercase;
+	font-weight: bold;
+	background-color: #222222;
+	padding: 10px 16px;
+	border-radius: 5px;
+	color: #bcbbbb;
+	-webkit-user-select: none;
+}
+
+.btn.alert {
+	background-color: #aa2f23 !important;
+}
+
+.btn.disabled {
+	opacity: .5;
+}
+
+.btn:hover {
+	background-color: #101010;
+	cursor: pointer;
+}
+
+.btn.btn-no-hover:hover {
+	background-color: #222222 !important;
+	cursor: inherit !important;
+}
+
+.tabcontent {
+	display: none;
+    animation: fadeEffect 1s;
+}
+	@keyframes fadeEffect {
+	    from {
+		    opacity: 0;
+		}
+	    to {
+		    opacity: 1;
+		}
+	}
+.center {
+	text-align: center;
+	margin-top: 8px;
+	position: relative;
+}
+.bar-wrapper {
+	display: inline-block;
+}
+.bar {
+	margin: 0px auto;
+	width: intrinsic;
+	background-color: #ededed;
+	border-bottom-left-radius: 100px;
+	border-top-left-radius: 100px;
+	padding: 3px;
+	float: left;
+	height: 38px;
+}
+.bar img {
+	width: 38px;
+}
+.name {
+	float: left;
+	width: intrinsic;
+	background-color: #ededed;
+	border-bottom-right-radius: 100px;
+	border-top-right-radius: 100px;
+	margin-left: -1px;
+}
+.name h1 {
+	padding: 5px 16px 5px 7px;
+	color: #23282d;
+	font-size: 24px;
+	text-transform: unset;
+	font-weight: 500;
+	letter-spacing: -.5px;
+	margin: 0px;
+	margin-bottom: 1px;
+}
+.disabled {
+	pointer-events: none;
+}
+
+.buttons ul {
+	list-style: none;
+	margin-top: 30px;
+}
+.buttons ul li {
+	background-color: #222222;
+	border-radius: 50px;
+	height: 40px;
+	float: left;
+}
+.buttons ul li img {
+	width: 20px;
+	height: 20px;
+	padding: 10px;
+	margin: 0px;
+}
+.buttons ul li.disabled img {
+	opacity: .2;
+}
+.buttons ul li:hover {
+	cursor: pointer;
+	background-color: #101010;
+}
+.buttons ul li:not(:last-child) {
+	margin-right: 15px;
+}
+
+#plugboard .content {
+	margin-top: 50px;
+}
+
+#plugboard form.plugboard {
+	width: 544px;
+	margin: 0 auto;
+}
+
+#plugboard form.plugboard input[type=text] {
+	display: inline-block;
+	color: #bcbbbb;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-left: 4px;
+	margin-right: 4px;
+	width: 25px;
+	height: 33px;
+	border-radius: 6px;
+	border: 1.5px solid #222222;
+	background-color: rgba(0, 0, 0, 0);
+	text-align: center;
+}
+
+#plugboard form.plugboard input[type=text]:focus {
+	border: 1.5px solid #bcbbbb;
+	outline-width: 0;
+	outline: none;
+}
+
+#plugboard p {
+	text-align: center;
+	margin-top: 40px;
+}
+
+#plugboard .letters {
+	width: 544px;
+	margin: -8px auto 0 auto;
+}
+
+#plugboard .letters p {
+	color: #222222;
+	width: 38px;
+	margin: 0px auto 3px auto;
+	text-align: center;
+	font-weight: bold;
+	display: inline-block;
+	-webkit-user-select: none;
+}
+
+#plugboard .display-letters {
+	height: 100px;
+	overflow: hidden;
+	text-align: center;
+}
+
+#plugboard .display-letters ul {
+	display: inline-block;
+	list-style: none;
+	padding-left: 0px;
+}
+#plugboard .display-letters ul li {
+	float: left;
+	background-color: #222222;
+	padding: 3px 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 20px;
+	-webkit-user-select: none;
+}
+#loader {
+	text-align: center;
+	margin-top: 240px;
+}
+
+#loader img {
+	width: 70px;
+	text-align: center;
+}
+
+/*ROTORS*/
+#rotors .setting-container {
+	width: 50%;
+	height: 405px;
+	padding: 10px;
+	border-right: 2px solid #222222;
+	box-sizing: border-box;
+	float: left;
+	padding-right: 44px;
+}
+
+#rotors .setting-container h3 {
+	color: #222222;
+	text-align: center;
+}
+
+#rotors .setting-container .drop-active-container .num-container {
+	display: inline-block;
+}
+
+#rotors .setting-container .drop-active-container .num-container p {
+	margin-top: 0px;
+}
+
+#rotors .drop-active-container {
+	width: 202px;
+	margin: 0 auto;
+	overflow: auto;
+	margin-top: 30px;
+	text-align: center;
+}
+
+#rotors .drop-active-container p {
+	color: #222222;
+	font-weight: bold;
+	display: inline-block;
+}
+
+#rotors .drop-active-container p:nth-child(2) {
+	margin: 0 60px;
+}
+
+#rotors .btn-container {
+	text-align: center;
+}
+
+#rotorSettingResetBtn {
+	background-color: #222222;
+	display: inline-block;
+	padding: 2px 12px;
+	color: #bcbbbb;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-radius: 42px;
+	margin-bottom: 22px;
+	margin-top: 5px;
+}
+#rotorSettingResetBtn:hover {
+	background-color: #101010;
+	cursor: pointer;
+}
+
+#rotors .drop-active-container p.first {
+	margin-left: 40px;
+}
+
+#rotors .drop-item-container, #rotors .drag-item-container {
+	width: 50px;
+	border: 1.5px solid #222222;
+	float: left;
+	margin: 4px 4px;
+	box-sizing: border-box;
+	height: 65px;
+	border-radius: 6px;
+}
+
+#rotors .drag-home-container {
+	width: 232px;
+	margin: 0 auto;
+}
+
+#rotors .drop-item-container {
+	margin: 10px 4px;
+}
+
+#currentRotorSetting2 {
+	margin: 10px 18px !important;
+}
+
+#rotors .drag-item {
+	background-color: #222222;
+	color: #bcbbbb;
+	font-size: 40px;
+	width: 100%;
+	height: 100%;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 3px;
+	border-radius: 4.7px;
+	box-sizing: border-box;
+	display: inline-block;
+}
+#rotors .drag-item:hover {
+	cursor: pointer;
+}
+
+#rotors .position-container {
+	width: 50%;
+	float: left;
+	padding: 10px;
+	box-sizing: border-box;
+	padding-left: 40px;
+}
+
+#rotors .position-container h3 {
+	text-align: center;
+	color: #222222;
+	margin-bottom: 80px;
+}
+
+#rotors .position-container form.rotor-position input[type=text] {
+	display: inline-block;
+	color: #bcbbbb;
+	font-weight: bold;
+	margin-left: 4px;
+	margin-right: 4px;
+	width: 45px;
+	height: 60px;
+	border-radius: 6px;
+	border: 1.5px solid #222222;
+	background-color: rgba(0, 0, 0, 0);
+	text-align: center;
+	font-size: 40px;
+}
+
+
+#rotors .position-container form.rotor-position input[type=text]:focus {
+	border: 1.5px solid #bcbbbb;
+	outline-width: 0;
+	outline: none;
+}
+
+#rotors form.rotor-position {
+	width: 203px;
+	margin: 0 auto;
+}
+
+#rotors #rotorPosition2 {
+	margin-left: 14px;
+	margin-right: 14px;
+}
+							
+#rotors .position-container .rotor-btn-container {
+	overflow: auto;
+	text-align: center;
+}
+
+#rotors .position-container .rotor-btn-container .rotor-btn {
+	display: inline-block;
+}
+
+#rotors .position-container .rotor-btn-container .rotor-btn:hover {
+	cursor: pointer;
+}
+
+#rotors .position-container .rotor-btn-container .rotor-btn img {
+	width: 25px;
+}
+
+#rotors .position-container .rotor-btn-container .rotor-btn:nth-child(2) {
+	margin: 10px 43px;
+}
+
+/*  REFLECTOR  */
+
+#reflector h3 {
+	text-align: center;
+	color: #222222;s
+}
+
+#reflector .reflector-btn-container {
+	width: 267px;
+	margin: 40px auto;
+}
+
+#reflector .reflector-btn-container .reflector-btn {
+	display: inline-block;
+	background-color: #222222;
+	padding: 10px 20px;
+	border-radius: 6px;
+	font-size: 40px;
+	font-weight: bold;
+	border: 3px solid #222222;
+	box-sizing: border-box;
+	-webkit-user-select: none;
+}
+
+#reflector .reflector-btn-container .reflector-btn:hover {
+	cursor: pointer;
+}
+
+#reflector .reflector-btn-container .active {
+	border: 3px solid #bcbbbb;
+}
+
+#reflector .reflector-btn-container .reflector-btn:nth-child(2) {
+	margin: 0px 20px;
+}
+
+/*  ENCRYPT  */
+#encryptA form.encrypt {
+	width: 100%;
+}
+
+#encryptA form.encrypt #encrypt-input, #encryptA form.encrypt #encrypt-output {
+	width: 100%;
+	height: 110px;
+	box-sizing: border-box;
+	background-color: #222222;
+	border-radius: 5px;
+	border: 3px solid #222222;
+	color: #bcbbbb;
+	font-size: 18px;
+	font-family: monospace;
+	resize: none;
+	text-transform: uppercase;
+}
+
+#encryptA form.encrypt #encrypt-output {
+	pointer-events: none;
+}
+
+#encryptA form.encrypt #encrypt-input:focus, #encryptA form.encrypt #encrypt-output:focus {
+	border: 3px solid #bcbbbb;
+	outline-width: 0;
+	outline: none;
+}
+
+#encryptA form.encrypt h3 {
+	color: #222222;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#encryptA form.encrypt #encrypt-btn, #encryptA form.encrypt #verify-btn {
+	display: inline-block;
+	text-transform: uppercase;
+	font-weight: bold;
+	float: right;
+	background-color: #222222;
+	padding: 10px 16px;
+	border-radius: 5px;
+	margin-top: 23px;
+	-webkit-user-select: none;
+}
+
+#encryptA form.encrypt .data-pt {
+	float: left;
+	margin-right: 10px;
+	margin-top: 22px;
+}
+
+#encryptA form.encrypt .verified-text {
+	border: 3px solid #6aaa21 !important;
+}
+
+#encryptA form.encrypt .not-verified-text {
+	border: 3px solid #aa2f23 !important;
+}
+
+#encryptA form.encrypt .verified {
+	background-color: #6aaa21;
+	color: #222222;
+}
+
+#encryptA form.encrypt .not-verified {
+	background-color: #aa2f23;
+	color: #222222;
+}
+
+#encryptA form.encrypt .disabled {
+	opacity: .5;
+}
+
+#encryptA form.encrypt #verify-btn {
+	margin-right: 10px;
+}
+
+#encryptA form.encrypt #encrypt-btn:hover, #encryptA form.encrypt #verify-btn:hover {
+	background-color: #101010;
+	cursor: pointer;
+}
+
+#encryptB .verify-container #verifyB-btn {
+	float: right;
+}
+
+#encryptB .verify-container .btn:not(:first-child) {
+	margin-right: 10px;
+}
+
+#encryptB .lampboard-container {
+	margin-top: 40px;
+	margin-bottom: 68px;
+}
+
+#encryptB .lampboard-container .lampboard-group {
+	text-align: center;
+}
+
+#encryptB .lampboard-container .lampboard-group .lampboard-item {
+	background-color: #222222;
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	font-weight: bold;
+	font-size: 28px;
+	text-align: center;
+	margin: 10px 2px;
+}
+
+#encryptB .lampboard-container .lampboard-group .lampboard-item.active {
+	background-color: #bcbbbb;
+	color: #222222;
+}
+
+#encryptB .lampboard-container .lampboard-group .lampboard-item p {
+	margin: 5px 0px 0px 0px;
+}
+
+#encryptB .encrypt-message-container {
+	text-align: center;
+	margin-top: 20px;
+}
+
+#encryptB #encrypt-ready-message {
+	
+}
+
+#encryptB .verify-container .verified-text {
+	border: 3px solid #6aaa21 !important;
+}
+
+#encryptB .verify-container .not-verified-text {
+	border: 3px solid #aa2f23 !important;
+}
+
+#encryptB .verify-container .verified {
+	background-color: #6aaa21;
+	color: #222222;
+}
+
+#encryptB .verify-container .not-verified {
+	background-color: #aa2f23;
+	color: #222222;
+}
+
+/*  SETTINGS  */
+
+#settings form.password {
+	width: 257px;
+	margin: 0 auto;
+}
+
+#settings form.password input[type=text], #lock form.password input[type=text] {
+	display: inline-block;
+	color: #bcbbbb;
+	font-weight: bold;
+	margin-left: 4px;
+	margin-right: 4px;
+	width: 45px;
+	height: 60px;
+	border-radius: 6px;
+	background-color: #222222;
+	border: 3px solid #222222;
+	text-align: center;
+	font-size: 40px;
+}
+
+#settings form.password input[type=text]:focus, #lock form.password input[type=text]:focus {
+	border: 3px solid #bcbbbb;
+	outline-width: 0;
+	outline: none;
+}
+
+#settings form.password input[type=text] {
+	margin-bottom: 10px;
+}
+
+#settings .disable-pass-container {
+	text-align: center;
+}
+
+#settings .password-enabled {
+	width: 248px;
+	background-color: #222222;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	text-align: center;
+	margin: 40px auto 10px auto;
+}
+
+#settings .disable-pass-container #disable-pass-btn {
+	width: 217px;
+	text-align: center;
+}
+
+#settings .erase-memory-container {
+	text-align: center;
+	margin-top: 100px;
+}
+
+/*  LOCK  */
+
+#lock form.password {
+	width: 257px;
+	margin: 0 auto;
+	margin-top: 120px;
+}
+
+#lock form.password .go-btn {
+	display: inline-block;
+	color: #bcbbbb;
+	font-weight: bold;
+	margin-left: 4px;
+	margin-right: 4px;
+	width: 47px;
+	height: 62px;
+	border-radius: 6px;
+	background-color: #222222;
+	border: 3px solid #222222;
+	text-align: center;
+	font-size: 40px;
+}
+
+#lock form.password .go-btn:hover {
+	cursor: pointer;
+	background-color: #101010;
+	border: 3px solid #101010;
+}
+
+#lock form.password .go-btn img {
+	width: 20px;
+	margin-left: 1px;
+	margin-top: 11px;
+}
+
+#lock form.password #unlock-btn {
+	float: right;
+	margin-right: 4px;
+	margin-top: 10px;
+}
+#lock form.password #clear-btn {
+	float: left;
+	margin-left: 4px;
+	margin-top: 10px;
+}
+
+/*  ABOUT  */
+#about .content {
+	height: 408px;
+	overflow: scroll;
+}
+
+#about .content p {
+	text-align: justify;
+}
+
+#about .content .photo-block img {
+	height: 90px;
+	border: 1px solid #222222;
+	border-radius: 4px;
+}
+
+#about .content .photo-block img:not(:last-child) {
+	margin-right: 17.5px;
+}
+
+/*  PC STYLE FIXES  */
+body.pc #plugboard .letters p {
+	width: 36px;
+}
+
+body.pc #rotors .position-container .rotor-btn-container {
+	margin-right: 8px;
+}
+
+body.pc #rotors .position-container .rotor-btn-container .rotor-btn:nth-child(2) {
+	margin: 10px 42px;
+}
+
+body.pc #lock form.password #unlock-btn {
+	margin-right: 13px;
+}
+
+body.pc #settings .password-enabled {
+	width: 240px;
+}
+
+body.pc #settings #disable-pass-btn {
+	width: 208px;
+}
+
+body.pc .main {
+	margin-left: -1px;
+}
