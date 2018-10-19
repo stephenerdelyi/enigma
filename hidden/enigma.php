@@ -16,6 +16,7 @@
 	class Enigma {
 		public $useReflector;
 		public $usePlugboard;
+		public $numRotorsUsable;
 		public $rotorSettings = array();
 		public $rotors = array();
 		
@@ -63,20 +64,22 @@
 		}
 		
 		private function initalizeRotorSettings($rotorSetting3, $rotorSetting2, $rotorSetting1) {
+		    $this->numRotorsUsable = 3;
+		    
 		    $this->rotorSettings[1] = $rotorSetting1;
 		    $this->rotorSettings[2] = $rotorSetting2;
 		    $this->rotorSettings[3] = $rotorSetting3;
 		}
 		
 		private function initalizeRotorPositions($rotorPosition3, $rotorPosition2, $rotorPosition1) {
-		    $this->rotors[1]->knockpoint = 17; //Q
-		    $this->rotors[2]->knockpoint = 5;  //E
-		    $this->rotors[3]->knockpoint = 22; //V
-		    $this->rotors[4]->knockpoint = 10; //J
-		    $this->rotors[5]->knockpoint = 26; //Z
-		    $this->rotors[6]->knockpoint = 16; //P
-		    $this->rotors[7]->knockpoint = 3;  //C
-		    $this->rotors[8]->knockpoint = 18; //R
+		    $this->rotors[1]->knockpoint = $this->convertLetter('Q');
+		    $this->rotors[2]->knockpoint = $this->convertLetter('E');
+		    $this->rotors[3]->knockpoint = $this->convertLetter('V');
+		    $this->rotors[4]->knockpoint = $this->convertLetter('J');
+		    $this->rotors[5]->knockpoint = $this->convertLetter('Z');
+		    $this->rotors[6]->knockpoint = $this->convertLetter('P');
+		    $this->rotors[7]->knockpoint = $this->convertLetter('C');
+		    $this->rotors[8]->knockpoint = $this->convertLetter('R');
 		
 		    for ($i = 1; $i < 9; $i++) {
 		        $this->rotors[$i]->position = $this->convertLetter('A');
@@ -156,28 +159,25 @@
 		}
 		
 		private function incrementRotors() {
-		    //increment rotor in position 1
-		    $this->rotors[$this->rotorSettings[1]]->position += 1;
-		    if ($this->rotors[$this->rotorSettings[1]]->position > 26) {
-		        $this->rotors[$this->rotorSettings[1]]->position %= 26;
+			$this->incrementRotor(1);
+		}
+		
+		private function incrementRotor($step) {
+			//increment rotor in position n
+		    $this->rotors[$this->rotorSettings[$step]]->position += 1;
+		    if ($this->rotors[$this->rotorSettings[$step]]->position > 26) {
+		        $this->rotors[$this->rotorSettings[$step]]->position %= 26;
 		    }
-		    $this->rotateArray($this->rotorSettings[1]);
-		    //if rotor in position 1 reaches a knockpoint
-		    if (($this->rotors[$this->rotorSettings[1]]->position - 1) == $this->rotors[$this->rotorSettings[1]]->knockpoint) {
-		        //increment rotor in position 2
-		        $this->rotors[$this->rotorSettings[2]]->position += 1;
-		        if ($this->rotors[$this->rotorSettings[2]]->position > 26) {
-		            $this->rotors[$this->rotorSettings[2]]->position %= 26;
-		        }
-		        $this->rotateArray($this->rotorSettings[2]);
-		        //if rotor in position 2 reaches a knockpoint
-		        if (($this->rotors[$this->rotorSettings[2]]->position - 1) == $this->rotors[$this->rotorSettings[2]]->knockpoint) {
-		            //increment rotor in position 3
-		            $this->rotors[$this->rotorSettings[3]]->position += 1;
-		            if ($this->rotors[$this->rotorSettings[3]]->position > 26) {
-		                $this->rotors[$this->rotorSettings[3]]->position %= 26;
-		            }
-		            $this->rotateArray($this->rotorSettings[3]);
+		    $this->rotateArray($this->rotorSettings[$step]);
+		
+		    $position = $this->rotors[$this->rotorSettings[$step]]->position;
+			$knockpoint = $this->rotors[$this->rotorSettings[$step]]->knockpoint;
+					
+		    //if rotor in position n reaches a knockpoint
+		    if ($position == $knockpoint) {
+		        //if the rotor exists, increment rotor n + 1
+		        if ($this->numRotorsUsable > $step) {
+		            $this->incrementRotor($step + 1);
 		        }
 		    }
 		    //echo "Rotors now:" . $this->convertNumber($this->rotors[$this->rotorSettings[3]]->position) . " " . $this->convertNumber($this->rotors[$this->rotorSettings[2]]->position) . " " . $this->convertNumber($this->rotors[$this->rotorSettings[1]]->position);
